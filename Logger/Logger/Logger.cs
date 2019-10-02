@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Logger
 {
-    class Logger
+    class Logger : IDisposable
     {
         private static object _Lock = new object();
         private static Logger _Logger = null;
@@ -29,11 +30,25 @@ namespace Logger
                 }
                 return _Logger;
             }
-        }        
+        }
 
         private Logger()
         {
             _Observers = new List<ILogger>();
+            LoggerConfigManager cfg = new LoggerConfigManager();
+
+            if (cfg.LogArchivo)
+            {
+                LoggerArchivo arch = new LoggerArchivo(cfg.LogArchivoPath, cfg.LogArchivoNombre);
+                arch.Init();
+                registrarObserver(arch);
+            }
+            if (cfg.LogConsola)
+            {
+                LoggerConsola con = new LoggerConsola();
+                con.Init();
+                registrarObserver(con);
+            }
         }
 
         private void registrarObserver(ILogger observer)
@@ -70,5 +85,20 @@ namespace Logger
                 observer.procesarError(msj);
             }
         }
+
+        public void Dispose()
+        {
+            foreach (ILogger observer in _Observers)
+            {
+                observer.Terminate();
+            }
+            _Logger = null;
+        }
+
+        ~Logger()
+        {
+            Dispose();
+        }
+
     }
 }

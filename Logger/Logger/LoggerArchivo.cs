@@ -9,6 +9,7 @@ namespace Logger
 {
     class LoggerArchivo : ILogger
     {
+        private static Task tarea = null;
         private string _pathArchivo;
         private StreamWriter _archivo;
 
@@ -17,34 +18,51 @@ namespace Logger
             get { return _pathArchivo; }
         }
 
-        public LoggerArchivo(string fileName)
+        public LoggerArchivo(string path, string nombre)
         {
-            _pathArchivo = fileName;
+            _pathArchivo = path + nombre + DateTime.Now.Date.ToString("yyyymmdd") + ".log";
         }
 
         public void Init()
         {
-            _archivo = new StreamWriter(_pathArchivo);
+            _archivo = new StreamWriter(_pathArchivo, true);
+            //_archivo.AutoFlush = true;
         }
 
         public void Terminate()
         {
-            _archivo.Close();
+            try
+            {
+                if (_archivo.BaseStream != null)
+                    _archivo.Close();
+            }catch (Exception)
+            {
+
+            }
         }
 
         public void procesarMensaje(string msj)
         {
+            if (tarea != null)
+                tarea.Wait();
             _archivo.WriteLine("[MSG] " + msj);
+            tarea = _archivo.FlushAsync();
         }
 
         public void procesarWarning(string msj)
         {
+            if (tarea != null)
+                tarea.Wait();
             _archivo.WriteLine("[WARN] " + msj);
+            tarea = _archivo.FlushAsync();
         }
 
         public void procesarError(string msj)
         {
+            if (tarea != null)
+                tarea.Wait();
             _archivo.WriteLine("[ERROR] " + msj);
+            tarea = _archivo.FlushAsync();
         }
     }
 }

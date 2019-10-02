@@ -10,6 +10,12 @@ namespace Logger
     {
         static void Main(string[] args)
         {
+            Logger.Instance.error("Prueba de error!!");
+            Console.ReadKey();
+            Logger.Instance.warning("Prueba de warning!!");
+            Console.ReadKey();
+            Logger.Instance.mensaje("Prueba de mensaje!!");
+            Console.ReadKey();
         }
     }
 }
