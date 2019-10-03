@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logger
+namespace LoggerProyecto
 {
-    class LoggerConfigManager
+    public static class LoggerConfigManager
     {
-        public bool LogArchivo { get { return bool.Parse(ConfigurationManager.AppSettings["logArchivo"] ?? "false"); } }
-        public string LogArchivoPath { get { return ConfigurationManager.AppSettings["logArchivoPath"]; } }
-        public string LogArchivoNombre { get { return ConfigurationManager.AppSettings["logArchivoNombre"]; } }
+        public static bool LogArchivo { get { return bool.Parse(ConfigurationManager.AppSettings["logArchivo"] ?? "false"); } }
+        public static string LogArchivoPath { get { return ConfigurationManager.AppSettings["logArchivoPath"]; } }
+        public static string LogArchivoNombre { get { return ConfigurationManager.AppSettings["logArchivoNombre"]; } }
 
-        public bool LogDB { get { return bool.Parse(ConfigurationManager.AppSettings["logDB"] ?? "false"); } }
+        public static bool LogDB { get { return bool.Parse(ConfigurationManager.AppSettings["logDB"] ?? "false"); } }
 
-        public bool LogConsola { get { return bool.Parse(ConfigurationManager.AppSettings["logConsola"] ?? "false"); } }
+        public static bool LogConsola { get { return bool.Parse(ConfigurationManager.AppSettings["logConsola"] ?? "false"); } }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Logger
+﻿namespace LoggerProyecto
 {
     internal interface ILogger
     {

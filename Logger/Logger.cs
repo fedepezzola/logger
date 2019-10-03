@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace Logger
+namespace LoggerProyecto
 {
-    class Logger : IDisposable
+    public class Logger : IDisposable
     {
         private static object _Lock = new object();
         private static Logger _Logger = null;
@@ -35,15 +35,14 @@ namespace Logger
         private Logger()
         {
             _Observers = new List<ILogger>();
-            LoggerConfigManager cfg = new LoggerConfigManager();
 
-            if (cfg.LogArchivo)
+            if (LoggerConfigManager.LogArchivo)
             {
-                LoggerArchivo arch = new LoggerArchivo(cfg.LogArchivoPath, cfg.LogArchivoNombre);
+                LoggerArchivo arch = new LoggerArchivo(LoggerConfigManager.LogArchivoPath, LoggerConfigManager.LogArchivoNombre);
                 arch.Init();
                 registrarObserver(arch);
             }
-            if (cfg.LogConsola)
+            if (LoggerConfigManager.LogConsola)
             {
                 LoggerConsola con = new LoggerConsola();
                 con.Init();
