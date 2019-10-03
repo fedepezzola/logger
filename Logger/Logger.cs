@@ -12,6 +12,10 @@ namespace LoggerProyecto
         private static object _Lock = new object();
         private static Logger _Logger = null;
 
+        private bool _logError;
+        private bool _logWarning;
+        private bool _logMensaje;
+
         private List<ILogger> _Observers;
 
         public static Logger Instance
@@ -48,6 +52,10 @@ namespace LoggerProyecto
                 con.Init();
                 registrarObserver(con);
             }
+
+            _logError = LoggerConfigManager.LogError;
+            _logWarning = LoggerConfigManager.LogWarning;
+            _logMensaje = LoggerConfigManager.LogMensaje;
         }
 
         private void registrarObserver(ILogger observer)
@@ -60,28 +68,37 @@ namespace LoggerProyecto
 
         public void mensaje(string msj)
         {
-            msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
-            foreach (ILogger observer in _Observers)
+            if (_logMensaje)
             {
-                observer.procesarMensaje(msj);
+                msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
+                foreach (ILogger observer in _Observers)
+                {
+                    observer.procesarMensaje(msj);
+                }
             }
         }
 
         public void warning(string msj)
         {
-            msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
-            foreach (ILogger observer in _Observers)
+            if (_logWarning)
             {
-                observer.procesarWarning(msj);
+                msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
+                foreach (ILogger observer in _Observers)
+                {
+                    observer.procesarWarning(msj);
+                }
             }
         }
 
         public void error(string msj)
         {
-            msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
-            foreach (ILogger observer in _Observers)
+            if (_logError)
             {
-                observer.procesarError(msj);
+                msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
+                foreach (ILogger observer in _Observers)
+                {
+                    observer.procesarError(msj);
+                }
             }
         }
 
