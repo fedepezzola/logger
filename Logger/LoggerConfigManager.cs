@@ -14,6 +14,7 @@ namespace LoggerProyecto
         public static string LogArchivoNombre { get { return ConfigurationManager.AppSettings["logArchivoNombre"]; } }
 
         public static bool LogDB { get { return bool.Parse(ConfigurationManager.AppSettings["logDB"] ?? "false"); } }
+        public static string LogDataDirectory { get { return ConfigurationManager.AppSettings["logDataDirectory"]; } }
 
         public static bool LogConsola { get { return bool.Parse(ConfigurationManager.AppSettings["logConsola"] ?? "false"); } }
 

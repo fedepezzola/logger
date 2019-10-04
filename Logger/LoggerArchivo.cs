@@ -26,7 +26,6 @@ namespace LoggerProyecto
         public void Init()
         {
             _archivo = new StreamWriter(_pathArchivo, true);
-            //_archivo.AutoFlush = true;
         }
 
         public void Terminate()
@@ -43,6 +42,7 @@ namespace LoggerProyecto
 
         public void procesarMensaje(string msj)
         {
+            msj = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msj);
             if (tarea != null)
                 tarea.Wait();
             _archivo.WriteLine("[MSG] " + msj);
@@ -51,6 +51,7 @@ namespace LoggerProyecto
 
         public void procesarWarning(string msj)
         {
+            msj = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msj);
             if (tarea != null)
                 tarea.Wait();
             _archivo.WriteLine("[WARN] " + msj);
@@ -59,6 +60,7 @@ namespace LoggerProyecto
 
         public void procesarError(string msj)
         {
+            msj = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msj);
             if (tarea != null)
                 tarea.Wait();
             _archivo.WriteLine("[ERROR] " + msj);

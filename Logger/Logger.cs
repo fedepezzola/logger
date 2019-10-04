@@ -54,7 +54,7 @@ namespace LoggerProyecto
             }
             if (LoggerConfigManager.LogDB)
             {
-                LoggerBaseDatos lbd = new LoggerBaseDatos();
+                LoggerBaseDatos lbd = new LoggerBaseDatos(LoggerConfigManager.LogDataDirectory);
                 lbd.Init();
                 registrarObserver(lbd);
             }
@@ -76,7 +76,6 @@ namespace LoggerProyecto
         {
             if (_logMensaje)
             {
-                msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
                 foreach (ILogger observer in _Observers)
                 {
                     observer.procesarMensaje(msj);
@@ -88,7 +87,6 @@ namespace LoggerProyecto
         {
             if (_logWarning)
             {
-                msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
                 foreach (ILogger observer in _Observers)
                 {
                     observer.procesarWarning(msj);
@@ -100,7 +98,6 @@ namespace LoggerProyecto
         {
             if (_logError)
             {
-                msj = string.Format("{0} - {1}", DateTime.Now.ToString(), msj);
                 foreach (ILogger observer in _Observers)
                 {
                     observer.procesarError(msj);

@@ -10,9 +10,9 @@ namespace LoggerProyecto
     {
         private LogEntities db = null;
 
-        public LoggerBaseDatos()
+        public LoggerBaseDatos(string dataPath)
         {
-            
+            AppDomain.CurrentDomain.SetData("DataDirectory", dataPath);
         }
 
         public void Init()
