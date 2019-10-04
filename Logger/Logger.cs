@@ -52,6 +52,12 @@ namespace LoggerProyecto
                 con.Init();
                 registrarObserver(con);
             }
+            if (LoggerConfigManager.LogDB)
+            {
+                LoggerBaseDatos lbd = new LoggerBaseDatos();
+                lbd.Init();
+                registrarObserver(lbd);
+            }
 
             _logError = LoggerConfigManager.LogError;
             _logWarning = LoggerConfigManager.LogWarning;
