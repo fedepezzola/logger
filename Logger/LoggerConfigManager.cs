@@ -20,7 +20,7 @@ namespace LoggerProyecto
 
         public static bool LogError { get { return bool.Parse(ConfigurationManager.AppSettings["logError"] ?? "false"); } }
         public static bool LogWarning { get { return bool.Parse(ConfigurationManager.AppSettings["logWarning"] ?? "false"); } }
-        public static bool LogMensaje { get { return bool.Parse(ConfigurationManager.AppSettings["logMensaje"] ?? "false"); } }
+        public static bool LogMessage { get { return bool.Parse(ConfigurationManager.AppSettings["logMessage"] ?? "false"); } }
 
     }
 }

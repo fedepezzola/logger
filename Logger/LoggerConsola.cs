@@ -19,7 +19,7 @@ namespace LoggerProyecto
             Console.WriteLine(msj);
         }
 
-        public void procesarMensaje(string msj)
+        public void procesarMessage(string msj)
         {
             msj = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msj);
             Console.ForegroundColor = ConsoleColor.White;

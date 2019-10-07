@@ -2,7 +2,7 @@
 {
     internal interface ILogger
     {
-        void procesarMensaje(string msj);
+        void procesarMessage(string msj);
         void procesarWarning(string msj);
         void procesarError(string msj);
         void Init();

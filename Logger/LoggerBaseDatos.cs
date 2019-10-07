@@ -25,7 +25,7 @@ namespace LoggerProyecto
             db = null;
         }
 
-        public void procesarMensaje(string msj)
+        public void procesarMessage(string msj)
         {
             agregarLog(msj, "M");
         }

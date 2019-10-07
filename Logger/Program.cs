@@ -14,7 +14,7 @@ namespace LoggerProyecto
             Console.ReadKey();
             Logger.Instance.warning("Prueba de warning!!");
             Console.ReadKey();
-            Logger.Instance.mensaje("Prueba de mensaje!!");
+            Logger.Instance.message("Prueba de mensaje!!");
             Console.ReadKey();
         }
     }

@@ -14,7 +14,7 @@ namespace LoggerProyecto
 
         private bool _logError;
         private bool _logWarning;
-        private bool _logMensaje;
+        private bool _logMessage;
 
         private List<ILogger> _Observers;
 
@@ -61,7 +61,7 @@ namespace LoggerProyecto
 
             _logError = LoggerConfigManager.LogError;
             _logWarning = LoggerConfigManager.LogWarning;
-            _logMensaje = LoggerConfigManager.LogMensaje;
+            _logMessage = LoggerConfigManager.LogMessage;
         }
 
         private void registrarObserver(ILogger observer)
@@ -72,13 +72,13 @@ namespace LoggerProyecto
             }
         }
 
-        public void mensaje(string msj)
+        public void message(string msj)
         {
-            if (_logMensaje)
+            if (_logMessage)
             {
                 foreach (ILogger observer in _Observers)
                 {
-                    observer.procesarMensaje(msj);
+                    observer.procesarMessage(msj);
                 }
             }
         }
