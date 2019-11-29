@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerCore", "LoggerCore\LoggerCore.csproj", "{FA3F7AB6-5A59-4E63-80EC-32A3E395C2BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerTests", "LoggerTests\LoggerTests.csproj", "{AC5CDE48-B165-4A51-9401-59364F26288D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA3F7AB6-5A59-4E63-80EC-32A3E395C2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3F7AB6-5A59-4E63-80EC-32A3E395C2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3F7AB6-5A59-4E63-80EC-32A3E395C2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3F7AB6-5A59-4E63-80EC-32A3E395C2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC5CDE48-B165-4A51-9401-59364F26288D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC5CDE48-B165-4A51-9401-59364F26288D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC5CDE48-B165-4A51-9401-59364F26288D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC5CDE48-B165-4A51-9401-59364F26288D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB6973D3-A8CF-4D7B-9F8C-E8A48EC2FA3F}
+	EndGlobalSection
+EndGlobal

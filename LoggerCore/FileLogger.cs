@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LoggerProyecto
+namespace LoggerCore
 {
-    class LoggerArchivo : ILogger
+    class FileLogger : ILogger
     {
         private static Task tarea = null;
         private string _pathArchivo;
@@ -18,7 +18,7 @@ namespace LoggerProyecto
             get { return _pathArchivo; }
         }
 
-        public LoggerArchivo(string path, string nombre)
+        public FileLogger(string path, string nombre)
         {
             _pathArchivo = path + nombre + DateTime.Now.Date.ToString("yyyymmdd") + ".log";
         }
@@ -40,30 +40,30 @@ namespace LoggerProyecto
             }
         }
 
-        public void procesarMessage(string msj)
+        public void addMessage(string msg)
         {
-            msj = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msj);
+            msg = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msg);
             if (tarea != null)
                 tarea.Wait();
-            _archivo.WriteLine("[MSG] " + msj);
+            _archivo.WriteLine("[MSG] " + msg);
             tarea = _archivo.FlushAsync();
         }
 
-        public void procesarWarning(string msj)
+        public void addWarning(string msg)
         {
-            msj = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msj);
+            msg = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msg);
             if (tarea != null)
                 tarea.Wait();
-            _archivo.WriteLine("[WARN] " + msj);
+            _archivo.WriteLine("[WARN] " + msg);
             tarea = _archivo.FlushAsync();
         }
 
-        public void procesarError(string msj)
+        public void addError(string msg)
         {
-            msj = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msj);
+            msg = string.Format("{0} - {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), msg);
             if (tarea != null)
                 tarea.Wait();
-            _archivo.WriteLine("[ERROR] " + msj);
+            _archivo.WriteLine("[ERROR] " + msg);
             tarea = _archivo.FlushAsync();
         }
     }

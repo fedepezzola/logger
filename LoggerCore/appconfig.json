@@ -1,0 +1,13 @@
+{
+  "LogConfiguration": {
+    "logArchivo" :"true",
+    "logArchivoPath" :"",
+    "logArchivoNombre" :"LogFile",
+    "logConsola" :"true",
+    "logDB" :"true",
+    "logDataDirectory": "c:\\users\\fpezzola\\desktop\\",
+    "logError" :"true",
+    "logWarning" :"true",
+    "logMessage" :"true"
+  }
+}
