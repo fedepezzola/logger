@@ -18,16 +18,6 @@ namespace LoggerTests
                 .UseInMemoryDatabase(databaseName: "Logger")
                 .Options;
 
-            // Insert seed data into the database using one instance of the context
-            using (var context = new LoggerDbContext(options))
-            {
-                //context.LogTypes.Add(new LogTypes { Id = "E", Description = "Error" });
-                //context.LogTypes.Add(new LogTypes { Id = "W", Description = "Warning" });
-                //context.LogTypes.Add(new LogTypes { Id = "M", Description = "Message" });
-                //context.SaveChanges();
-            }
-
-            // Use a clean instance of the context to run the test
             using (var context = new LoggerDbContext(options))
             {
                 Mock<DataBaseLogger> logger = new Mock<DataBaseLogger>(context);
