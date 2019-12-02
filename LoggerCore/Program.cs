@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
 
 namespace LoggerCore
 {
@@ -8,17 +7,10 @@ namespace LoggerCore
     {
         static void Main(string[] args)
         {
-            var builder = new ConfigurationBuilder()
-                //.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appconfig.json");
-
-            var config = builder.Build();
-
-            var appConfig = config.GetSection("LogConfiguration");
-            appConfig.Bind(LogConfiguration.Instance);
+            LogConfiguration.Instance.LoadConfiguration(new ConfigurationBuilder().AddJsonFile("appconfig.json"));
 
             ILogManagerBuilder lmb = new LogManagerBuilderFromConfig();
-            lmb.buildLogManager();
+            lmb.BuildLogManager();
 
 
             LogManager.Instance.error("Prueba de error!!");

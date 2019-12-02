@@ -6,7 +6,7 @@ namespace LoggerCore
 {
     public interface ILogManagerBuilder
     {
-        void buildLogManager();
+        void BuildLogManager();
 
     }
 }

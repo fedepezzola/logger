@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LoggerCore
 {
-    class FileLogger : ILogger
+    public class FileLogger : ILogger
     {
         private static Task tarea = null;
         private string _pathArchivo;

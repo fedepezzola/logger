@@ -10,7 +10,7 @@ namespace LoggerTests
     {
         public Mock<ILogger> _m1 { get; set; }
         public Mock<ILogger> _m2 { get; set; }
-        public void buildLogManager()
+        public void BuildLogManager()
         {
             _m1 = new Mock<ILogger>();
             LogManager.Instance.subscribeLogger(_m1.Object);

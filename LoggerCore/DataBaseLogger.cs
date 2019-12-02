@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoggerCore.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,66 +7,13 @@ using System.Text;
 
 namespace LoggerCore
 {
-    class DataBaseLogger : ILogger
+    public class DataBaseLogger : ILogger
     {
-        private string logDataDirectory;
+        private LoggerDbContext _db;
 
-        public DataBaseLogger(string logDataDirectory)
+        public DataBaseLogger(LoggerDbContext Db)
         {
-            this.logDataDirectory = logDataDirectory;
-        }
-
-        /* private LogEntities db = null;
-
-public LoggerBaseDatos(string dataPath)
-{
-    AppDomain.CurrentDomain.SetData("DataDirectory", dataPath);
-}
-
-public void Init()
-{
-    db = new LogEntities();
-}
-
-public void Terminate()
-{
-    db = null;
-}
-
-public void procesarMessage(string msj)
-{
-    agregarLog(msj, "M");
-}
-
-private void agregarLog(string msj, string tipo)
-{
-    logs l = new logs();
-    l.mensaje = msj;
-    l.fecha_hora = DateTime.Now;
-    l.tipo = tipo;
-    db.logs.Add(l);
-    db.SaveChanges();
-}
-
-public void procesarWarning(string msj)
-{
-    agregarLog(msj, "W");
-}
-
-public void procesarError(string msj)
-{
-    agregarLog(msj, "E");
-}*/
-        public void addError(string msj)
-        {
-        }
-
-        public void addMessage(string msj)
-        {
-        }
-
-        public void addWarning(string msj)
-        {
+            _db = Db;
         }
 
         public void Init()
@@ -74,6 +22,37 @@ public void procesarError(string msj)
 
         public void Terminate()
         {
+            _db = null;
+        }
+
+        private void addLog(string msj, string tipo)
+        {
+            Logs l = new Logs();
+            l.Message = msj;
+            l.When = GetCurrentTime();
+            l.Type = tipo;
+            _db.Logs.Add(l);
+            _db.SaveChanges();
+        }
+
+        public virtual DateTime GetCurrentTime()
+        {
+            return DateTime.Now;
+        }
+
+        public void addError(string msg)
+        {
+            addLog(msg, "E");
+        }
+
+        public void addMessage(string msg)
+        {
+            addLog(msg, "M");
+        }
+
+        public void addWarning(string msg)
+        {
+            addLog(msg, "W");
         }
     }
 }

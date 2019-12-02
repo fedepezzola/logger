@@ -12,7 +12,7 @@ namespace LoggerTests
         {
             LogManager.Instance.Dispose();
             _lmb = new LogManagerBuilderMock();
-            _lmb.buildLogManager();
+            _lmb.BuildLogManager();
         }
 
         [Fact]

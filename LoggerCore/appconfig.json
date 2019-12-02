@@ -1,13 +1,19 @@
 {
   "LogConfiguration": {
-    "logArchivo" :"true",
-    "logArchivoPath" :"",
-    "logArchivoNombre" :"LogFile",
-    "logConsola" :"true",
-    "logDB" :"true",
-    "logDataDirectory": "c:\\users\\fpezzola\\desktop\\",
-    "logError" :"true",
-    "logWarning" :"true",
-    "logMessage" :"true"
+    "File": {
+      "Active": "true",
+      "Path": "",
+      "Name": "LogFile"
+    },
+    "Console": {
+      "Active": "true"
+    },
+    "DB": {
+      "Active": "true",
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Logger;Trusted_Connection=True;MultipleActiveResultSets=true",
+    },
+    "logError": "true",
+    "logWarning": "true",
+    "logMessage": "true"
   }
 }

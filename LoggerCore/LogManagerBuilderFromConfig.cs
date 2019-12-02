@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoggerCore.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,37 +7,37 @@ namespace LoggerCore
 {
     class LogManagerBuilderFromConfig : ILogManagerBuilder
     {
-        public void buildLogManager()
+        public void BuildLogManager()
         {
-            addConsoleLogger();
-            addFileLogger();
-            addDataBaseLogger();
+            AddConsoleLogger();
+            AddFileLogger();
+            AddDataBaseLogger();
         }
 
-        private void addConsoleLogger()
+        private void AddConsoleLogger()
         {
-            if (LogConfiguration.Instance.LogConsola)
+            if (LogConfiguration.Instance.Console.Active)
             {
                 ConsoleLogger con = new ConsoleLogger();
                 LogManager.Instance.subscribeLogger(con);
             }
         }
 
-        private void addDataBaseLogger()
+        private void AddDataBaseLogger()
         {
-            if (LogConfiguration.Instance.LogDB)
+            if (LogConfiguration.Instance.DB.Active)
             {
-                DataBaseLogger lbd = new DataBaseLogger(LogConfiguration.Instance.LogDataDirectory);
+                DataBaseLogger lbd = new DataBaseLogger(new LoggerDbContextFactory().CreateDbContext());
                 LogManager.Instance.subscribeLogger(lbd);
             }
         }
 
-        private void addFileLogger()
+        private void AddFileLogger()
         {
             
-            if (LogConfiguration.Instance.LogArchivo)
+            if (LogConfiguration.Instance.File.Active)
             {
-                FileLogger arch = new FileLogger(LogConfiguration.Instance.LogArchivoPath, LogConfiguration.Instance.LogArchivoNombre);
+                FileLogger arch = new FileLogger(LogConfiguration.Instance.File.Path, LogConfiguration.Instance.File.Name);
                 LogManager.Instance.subscribeLogger(arch);
             }
         }
