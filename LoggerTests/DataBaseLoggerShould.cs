@@ -18,6 +18,7 @@ namespace LoggerTests
                 .UseInMemoryDatabase(databaseName: "Logger")
                 .Options;
 
+
             using (var context = new LoggerDbContext(options))
             {
                 Mock<DataBaseLogger> logger = new Mock<DataBaseLogger>(context);
